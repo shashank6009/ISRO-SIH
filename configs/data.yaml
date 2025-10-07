@@ -1,0 +1,7 @@
+# Data configuration for GENESIS-AI
+schema:
+  columns: ["sat_id", "orbit_class", "quantity", "timestamp", "error"]
+resample_interval: "15min"
+imputation_method: "linear"
+mask_missing: true
+output_dir: "artifacts/data_prepared/"

@@ -1,0 +1,363 @@
+{
+  "model_type": "gru",
+  "seq_len": 8,
+  "hidden_size": 32,
+  "horizons_minutes": [
+    15,
+    30,
+    60,
+    120
+  ],
+  "rows": [
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T00:00:00Z",
+      "error": 0.01
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T00:15:00Z",
+      "error": 0.01149916708323414
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T00:30:00Z",
+      "error": 0.012993346653975307
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T00:45:00Z",
+      "error": 0.014477601033306699
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T01:00:00Z",
+      "error": 0.01594709171154325
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T01:15:00Z",
+      "error": 0.017397127693021014
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T01:30:00Z",
+      "error": 0.01882321236697518
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T01:45:00Z",
+      "error": 0.02022108843618846
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T02:00:00Z",
+      "error": 0.021586780454497616
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T02:15:00Z",
+      "error": 0.02291663454813742
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T02:30:00Z",
+      "error": 0.024207354924039484
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T02:45:00Z",
+      "error": 0.025456036800307176
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T03:00:00Z",
+      "error": 0.02666019542983613
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T03:15:00Z",
+      "error": 0.027817790927085966
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T03:30:00Z",
+      "error": 0.028927248649942304
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T03:45:00Z",
+      "error": 0.029987474933020272
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T04:00:00Z",
+      "error": 0.030997868015207528
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T04:15:00Z",
+      "error": 0.031958324052262344
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T04:30:00Z",
+      "error": 0.03286923815439098
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T04:45:00Z",
+      "error": 0.03373150043843707
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T05:00:00Z",
+      "error": 0.03454648713412841
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T05:15:00Z",
+      "error": 0.035316046833244366
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T05:30:00Z",
+      "error": 0.03604248201909795
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T05:45:00Z",
+      "error": 0.0367285260608836
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T06:00:00Z",
+      "error": 0.03737731590275575
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T06:15:00Z",
+      "error": 0.037992360720519786
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T06:30:00Z",
+      "error": 0.038577506859107324
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T06:45:00Z",
+      "error": 0.03913689940116915
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T07:00:00Z",
+      "error": 0.03967494075077952
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T07:15:00Z",
+      "error": 0.04019624664606991
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T07:30:00Z",
+      "error": 0.040705600040299335
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T07:45:00Z",
+      "error": 0.041207903312166456
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T08:00:00Z",
+      "error": 0.041708129282862105
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T08:15:00Z",
+      "error": 0.04221127152928376
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T08:30:00Z",
+      "error": 0.04272229448986584
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T08:45:00Z",
+      "error": 0.043246083861551904
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T09:00:00Z",
+      "error": 0.04378739778352574
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T09:15:00Z",
+      "error": 0.04435081929545753
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T09:30:00Z",
+      "error": 0.04494071054528641
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T09:45:00Z",
+      "error": 0.04556116920408013
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T10:00:00Z",
+      "error": 0.04621598752346036
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T10:15:00Z",
+      "error": 0.04690861444467795
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T10:30:00Z",
+      "error": 0.047642121137932064
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T10:45:00Z",
+      "error": 0.04841917031625273
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T11:00:00Z",
+      "error": 0.049241989630552416
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T11:15:00Z",
+      "error": 0.050112349411674514
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T11:30:00Z",
+      "error": 0.051031544981832676
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T11:45:00Z",
+      "error": 0.0520003837121795
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T12:00:00Z",
+      "error": 0.0530191769558208
+    },
+    {
+      "sat_id": "SAT-001",
+      "orbit_class": "MEO",
+      "quantity": "clock",
+      "timestamp": "2025-01-01T12:15:00Z",
+      "error": 0.05408773693687834
+    }
+  ]
+}

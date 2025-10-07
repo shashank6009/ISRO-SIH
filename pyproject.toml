@@ -1,0 +1,39 @@
+[project]
+name = "genesis-ai"
+version = "0.1.0"
+description = "Generative GNSS error forecasting system"
+authors = [{ name = "Team GENESIS-AI" }]
+requires-python = ">=3.9"
+
+dependencies = [
+"numpy",
+"pandas",
+"scikit-learn",
+"torch",
+"pytorch-lightning",
+"gpytorch",
+"hydra-core",
+"pyyaml",
+"matplotlib",
+"plotly",
+"streamlit",
+"fastapi",
+"uvicorn[standard]",
+"pydantic>=2.5",
+"requests",
+"sqlalchemy>=2.0",
+"schedule"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "black", "isort", "ruff", "mypy"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"

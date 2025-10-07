@@ -1,0 +1,8 @@
+# Training configuration
+epochs: 50
+batch_size: 64
+learning_rate: 1e-3
+horizons: [15, 30, 60, 120, 360, 1440]
+optimizer: "adam"
+scheduler: "cosine"
+device: "cuda"

@@ -1,0 +1,13 @@
+# Model configuration for GENESIS-AI
+architectures:
+  baseline: true
+  gru: true
+  transformer: true
+  gp_head: true
+  diffusion: true
+
+normality_loss_weight: 0.1
+embedding_dim: 16
+hidden_size: 128
+num_layers: 3
+dropout: 0.1
