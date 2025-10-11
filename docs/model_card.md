@@ -177,3 +177,4 @@ GENESIS-AI is a hybrid neural architecture combining Gated Recurrent Units (GRU)
 2. Vaswani, A., et al. (2017). Attention is all you need. Advances in neural information processing systems, 30.
 3. Rasmussen, C. E., & Williams, C. K. (2006). Gaussian processes for machine learning. MIT press.
 4. Gardner, J., et al. (2018). GPyTorch: Blackbox matrix-matrix Gaussian process inference with GPU acceleration. Advances in neural information processing systems, 31.
+

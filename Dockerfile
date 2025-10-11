@@ -60,3 +60,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
 
 # Default command - runs both services
 CMD ["sh", "-c", "python -m uvicorn genesis_ai.inference.service:app --host 0.0.0.0 --port 8000 & streamlit run src/genesis_ai/app/main.py --server.port 8501 --server.address 0.0.0.0 & wait"]
+

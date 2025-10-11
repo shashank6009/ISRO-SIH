@@ -2,9 +2,13 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import plotly.io as pio
 from datetime import datetime
 from pathlib import Path
 import time
+import io
+import json
+import requests
 
 from genesis_ai.inference.predictor_client import GenesisClient
 from genesis_ai.integration.env_feed import fetch_space_weather, fetch_ionosphere_data, get_ground_stations, fetch_solar_activity, EnvironmentalMonitor
@@ -333,6 +337,48 @@ render_topbar()
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
 
 # Enhanced UI Components
+def validate_gnss_df(df: pd.DataFrame):
+    required_cols = {"sat_id", "orbit_class", "quantity", "timestamp", "error"}
+    problems = []
+    warnings = []
+    missing = required_cols - set(df.columns)
+    if missing:
+        problems.append(f"Missing columns: {', '.join(sorted(missing))}")
+        return False, problems, warnings
+
+    # Basic content checks
+    allowed_orbits = {"GEO/GSO", "MEO", "LEO"}
+    bad_orbits = set(df["orbit_class"].astype(str).unique()) - allowed_orbits
+    if bad_orbits:
+        problems.append(f"Unknown orbit_class values: {', '.join(sorted(bad_orbits))}")
+
+    allowed_qty = {"clock", "ephem"}
+    bad_qty = set(df["quantity"].astype(str).unique()) - allowed_qty
+    if bad_qty:
+        problems.append(f"Unknown quantity values: {', '.join(sorted(bad_qty))}")
+
+    # Timestamp parse
+    try:
+        ts = pd.to_datetime(df["timestamp"], errors="coerce")
+        if ts.isna().any():
+            problems.append("Some timestamps are invalid/empty")
+    except Exception:
+        problems.append("Timestamps could not be parsed")
+
+    # Error numeric
+    try:
+        _ = pd.to_numeric(df["error"], errors="coerce")
+        if _.isna().any():
+            problems.append("Some error values are non-numeric")
+    except Exception:
+        problems.append("Error column is not numeric")
+
+    # Light heuristics
+    if len(df) < 10:
+        warnings.append("Very small dataset; forecasts may be unstable")
+
+    return len(problems) == 0, problems, warnings
+
 def render_satellite_tracker(predictions_df):
     st.markdown('<div class="genesis-panel">', unsafe_allow_html=True)
     st.markdown("### 🛰️ Live Satellite Status")
@@ -491,6 +537,15 @@ with st.sidebar:
     api_url = st.text_input("Inference API URL", "http://127.0.0.1:8000")
     auto_refresh = st.checkbox("Auto Refresh (every 60s)", False)
     uploaded = st.file_uploader("Upload GNSS Error Data (CSV)", type=["csv"])
+    st.markdown("### 💾 Session")
+    persist = st.checkbox("Remember results in this session", True)
+    if st.button("💠 Restore last results"):
+        if "last_cached_predictions" in st.session_state:
+            st.session_state.predictions = st.session_state.last_cached_predictions
+            st.session_state.forecast_info = st.session_state.last_cached_info
+            st.success("Restored previous results")
+        else:
+            st.info("No previous results found")
     
     st.markdown("---")
     st.markdown("### 🔧 System Status")
@@ -589,6 +644,16 @@ st.divider()
 
 if uploaded:
     df = pd.read_csv(uploaded, parse_dates=["timestamp"])
+    ok, problems, warns = validate_gnss_df(df)
+    if not ok:
+        st.error("Data validation failed:")
+        for p in problems:
+            st.write(f"• {p}")
+        st.stop()
+    elif warns:
+        st.warning("Data validation warnings:")
+        for w in warns:
+            st.write(f"• {w}")
     
     # Enhanced Data Summary
     col1, col2, col3, col4 = st.columns(4)
@@ -602,11 +667,21 @@ if uploaded:
     
     st.success(f"📡 Loaded telemetry from {df['sat_id'].nunique()} satellites across {df['orbit_class'].nunique()} orbit classes")
 
+    # What‑if controls
+    with st.expander("🎛️ What‑if: try different settings"):
+        colw1, colw2, colw3 = st.columns(3)
+        with colw1:
+            wi_model = st.selectbox("Model (what‑if)", ["gru", "transformer"], index=["gru","transformer"].index(model_type))
+        with colw2:
+            wi_seq = st.slider("Seq len (what‑if)", 8, 24, seq_len)
+        with colw3:
+            wi_hidden = st.slider("Hidden (what‑if)", 32, 256, hidden_size, 32)
+
     if st.button("🚀 Run ISRO Forecast", type="primary"):
         with st.spinner("Computing multi-horizon forecasts via /predict_pro..."):
             try:
                 client = GenesisClient(base_url=api_url)
-                result = client.predict_pro(df, model_type=model_type, seq_len=seq_len, hidden_size=hidden_size)
+                result = client.predict_pro(df, model_type=wi_model, seq_len=wi_seq, hidden_size=wi_hidden)
                 preds = pd.DataFrame(result["predictions"])
                 preds["timestamp"] = pd.to_datetime(preds["timestamp"])
                 
@@ -616,6 +691,9 @@ if uploaded:
                 st.session_state.predictions = preds
                 st.session_state.forecast_info = result["info"]
                 st.session_state.last_update = datetime.now()
+                if persist:
+                    st.session_state.last_cached_predictions = preds
+                    st.session_state.last_cached_info = result["info"]
                 
             except Exception as e:
                 st.error(f"❌ Forecast failed: {str(e)}")
@@ -675,6 +753,28 @@ if uploaded:
                       .format({"predicted_error": "{:.4f}", "lower_bound": "{:.4f}", "upper_bound": "{:.4f}"}),
             width='stretch'
         )
+
+        # Export section
+        with st.expander("⬇️ Export results"):
+            csv_bytes = preds.to_csv(index=False).encode("utf-8")
+            st.download_button("Download CSV", data=csv_bytes, file_name="genesis_forecast.csv", mime="text/csv")
+            # Export chart as PNG via Plotly static image export (fallback to JSON if kaleido not present)
+            try:
+                png_buf = io.BytesIO()
+                timeline_fig = go.Figure()
+                export_sats = preds['sat_id'].unique()
+                export_colors = ["#00c9ff", "#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"]
+                for i, sat in enumerate(export_sats):
+                    sat_data = preds[preds['sat_id'] == sat].sort_values('timestamp')
+                    color = export_colors[i % len(export_colors)]
+                    timeline_fig.add_trace(go.Scatter(x=sat_data['timestamp'], y=sat_data['predicted_error'], mode='lines', line=dict(color=color)))
+                timeline_fig.update_layout(template="plotly_dark", xaxis_title="Time", yaxis_title="Predicted Error")
+                timeline_fig.write_image(png_buf, format="png")
+                st.download_button("Download Timeline PNG", data=png_buf.getvalue(), file_name="forecast_timeline.png", mime="image/png")
+            except Exception:
+                st.info("Install 'kaleido' to enable PNG export. Providing JSON spec instead.")
+                json_str = pio.to_json(timeline_fig, validate=False, pretty=False)
+                st.download_button("Download Timeline Spec (JSON)", data=json_str.encode("utf-8"), file_name="forecast_timeline.json", mime="application/json")
 
         # Plotting section
         st.subheader("🔮 Predicted Error Timeline")
@@ -736,7 +836,7 @@ if uploaded:
             )
         )
         
-        st.plotly_chart(fig, width='stretch')
+        st.plotly_chart(fig, width='stretch', config={'displayModeBar': False})
         
         # System Health Gauge
         col1, col2 = st.columns([2, 1])
@@ -744,7 +844,7 @@ if uploaded:
             # Calculate current RMSE from predictions
             current_rmse = preds['predicted_error'].std() if not preds.empty else 0.5
             health_gauge = render_health_gauge(current_rmse)
-            st.plotly_chart(health_gauge, width='stretch')
+            st.plotly_chart(health_gauge, width='stretch', config={'displayModeBar': False})
         
         with col1:
             # Alert Feed
@@ -819,7 +919,7 @@ if uploaded:
                 )
             )
             
-            st.plotly_chart(fig_geo, width='stretch')
+            st.plotly_chart(fig_geo, width='stretch', config={'displayModeBar': False})
             
             # Station status summary
             col1, col2, col3 = st.columns(3)
