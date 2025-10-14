@@ -1,8 +1,8 @@
-# GENESIS-AI Production Audit Report
+# NAVIQ Production Audit Report
 
 ## Executive Summary
 
-Completed comprehensive production audit and redesign of GENESIS-AI GNSS Error Prediction System for ISRO deployment. The system has been transformed into a professional, judge-ready platform with zero runtime errors and enterprise-grade quality.
+Completed comprehensive production audit and redesign of NAVIQ GNSS Error Prediction System for ISRO deployment. The system has been transformed into a professional, judge-ready platform with zero runtime errors and enterprise-grade quality.
 
 ## Major Fixes & Improvements
 
@@ -29,7 +29,7 @@ Completed comprehensive production audit and redesign of GENESIS-AI GNSS Error P
 - Mission control aesthetic with operational status indicators
 
 **Key Changes:**
-- Header: Clean "GENESIS-AI" title with system status
+- Header: Clean "NAVIQ" title with system status
 - Mission objective clearly stated upfront
 - Professional metric panels with hover effects
 - Streamlined data upload interface
@@ -144,8 +144,8 @@ npm run lint
 
 ### Local Development
 ```bash
-git clone https://github.com/isro/genesis-ai.git
-cd genesis-ai
+git clone https://github.com/shashank6009/NAVIQ.git
+cd NAVIQ
 npm install
 python3 -m pip install -r requirements.txt
 npm run dev
@@ -160,8 +160,8 @@ vercel --prod
 
 ### Docker Deployment
 ```bash
-docker build -t genesis-ai .
-docker run -p 8502:8502 genesis-ai
+docker build -t naviq .
+docker run -p 8502:8502 naviq
 ```
 
 ## Lighthouse Performance Scores

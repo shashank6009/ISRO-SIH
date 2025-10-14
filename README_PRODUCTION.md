@@ -1,8 +1,8 @@
-# GENESIS-AI: Professional GNSS Error Prediction System
+# NAVIQ: Professional GNSS Error Prediction System
 
 ## Overview
 
-GENESIS-AI is a production-grade GNSS (Global Navigation Satellite System) error prediction platform designed for space agencies and navigation system operators. The system predicts satellite clock and ephemeris errors to enhance navigation accuracy through advanced AI/ML techniques.
+NAVIQ is a production-grade GNSS (Global Navigation Satellite System) error prediction platform designed for space agencies and navigation system operators. The system predicts satellite clock and ephemeris errors to enhance navigation accuracy through advanced AI/ML techniques.
 
 **Model Version:** 1.0.0  
 **Primary Metric:** Shapiro-Wilk normality test (p-value > 0.05)  
@@ -15,8 +15,8 @@ GENESIS-AI is a production-grade GNSS (Global Navigation Satellite System) error
 
 ```bash
 # Clone repository
-git clone https://github.com/isro/genesis-ai.git
-cd genesis-ai
+git clone https://github.com/shashank6009/NAVIQ.git
+cd NAVIQ
 
 # Install dependencies
 npm install
@@ -253,7 +253,7 @@ python3 -m pip install --upgrade -r requirements.txt
 **Import Errors**
 ```bash
 # Verify Python path
-export PYTHONPATH=/path/to/genesis-ai/src:$PYTHONPATH
+export PYTHONPATH=/path/to/NAVIQ/src:$PYTHONPATH
 python3 -c "import genesis_ai; print('Success')"
 ```
 
@@ -305,9 +305,9 @@ MIT License - See LICENSE file for details.
 
 ## Support
 
-- **Documentation**: [Project Wiki](https://github.com/isro/genesis-ai/wiki)
-- **Issues**: [GitHub Issues](https://github.com/isro/genesis-ai/issues)
-- **Contact**: genesis-ai-support@isro.gov.in
+- **Documentation**: [Project Wiki](https://github.com/shashank6009/NAVIQ/wiki)
+- **Issues**: [GitHub Issues](https://github.com/shashank6009/NAVIQ/issues)
+- **Contact**: naviq-support@isro.gov.in
 
 ---
 

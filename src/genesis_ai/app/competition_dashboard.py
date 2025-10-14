@@ -34,7 +34,7 @@ def get_dataset_path(filename):
 
 # Professional page configuration
 st.set_page_config(
-    page_title="GENESIS-AI | GNSS Error Prediction",
+    page_title="NAVIQ | GNSS Error Prediction",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -260,7 +260,7 @@ header {visibility: hidden;}
 # Professional ISRO mission control header
 st.markdown("""
 <div class="main-header">
-    <div class="main-title">GENESIS-AI</div>
+    <div class="main-title">NAVIQ</div>
     <div class="main-subtitle">GNSS Error Prediction & Analysis System</div>
     <div class="system-status">
         <span class="status-indicator"></span>

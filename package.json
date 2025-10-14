@@ -1,7 +1,7 @@
 {
-  "name": "genesis-ai",
+  "name": "naviq",
   "version": "1.0.0",
-  "description": "GENESIS-AI GNSS Error Forecasting Platform",
+  "description": "NAVIQ GNSS Error Forecasting Platform",
   "main": "index.js",
   "scripts": {
     "dev": "python3 -m streamlit run src/genesis_ai/app/competition_dashboard.py --server.port=8502",
@@ -35,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/isro/genesis-ai.git"
+    "url": "https://github.com/shashank6009/NAVIQ.git"
   },
   "bugs": {
-    "url": "https://github.com/isro/genesis-ai/issues"
+    "url": "https://github.com/shashank6009/NAVIQ/issues"
   },
-  "homepage": "https://github.com/isro/genesis-ai#readme"
+  "homepage": "https://github.com/shashank6009/NAVIQ#readme"
 }
