@@ -5,11 +5,10 @@ Advanced anomaly detection with predictive alerts and trend analysis
 
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Tuple, Any, Optional
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import DBSCAN
 import logging
 from dataclasses import dataclass
 from enum import Enum

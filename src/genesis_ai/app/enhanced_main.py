@@ -6,22 +6,18 @@ Integrates live demo, AI explainability, 3D visualization, and anomaly detection
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 from datetime import datetime, timedelta
-from pathlib import Path
 import time
 import numpy as np
-import json
 
 # Import new modules
-from genesis_ai.demo.live_simulator import global_simulator, start_live_demo, get_live_data, get_space_weather
-from genesis_ai.explainability.model_interpreter import create_model_interpreter, get_default_feature_names
+from genesis_ai.demo.live_simulator import start_live_demo, get_live_data
+from genesis_ai.explainability.model_interpreter import get_default_feature_names
 from genesis_ai.visualization.satellite_3d import create_satellite_viewer, generate_demo_satellite_data
 from genesis_ai.anomaly.detector import detect_satellite_anomalies, train_anomaly_detector, get_anomaly_summary
 
 # Original imports
 from genesis_ai.inference.predictor_client import GenesisClient
-from genesis_ai.integration.env_feed import EnvironmentalMonitor
 
 # --- Enhanced UI Configuration ---
 st.set_page_config(

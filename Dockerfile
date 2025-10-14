@@ -36,6 +36,7 @@ COPY --from=builder /root/.local /home/genesis/.local
 COPY src/ ./src/
 COPY data/ ./data/
 COPY configs/ ./configs/
+COPY .streamlit/ ./.streamlit/
 COPY pyproject.toml .
 COPY README.md .
 COPY LICENSE .

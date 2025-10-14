@@ -1,0 +1,17 @@
+[server]
+headless = true
+port = 8502
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+primaryColor = "#58a6ff"
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#161b22"
+textColor = "#ffffff"
+
+[global]
+dataFrameSerialization = "legacy"

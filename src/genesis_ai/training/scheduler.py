@@ -2,7 +2,6 @@ import schedule
 import time
 import subprocess
 import logging
-import os
 from datetime import datetime, timedelta
 from pathlib import Path
 import sys
@@ -10,7 +9,7 @@ import sys
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from genesis_ai.db.models import TrainingRun, get_engine, get_session, init_database
+from genesis_ai.db.models import TrainingRun, get_session, init_database
 from sqlalchemy import text
 
 # Configure logging

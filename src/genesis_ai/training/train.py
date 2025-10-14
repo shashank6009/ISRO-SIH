@@ -4,7 +4,6 @@ import pandas as pd
 import pytorch_lightning as pl
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import torch
 
 from genesis_ai.features.engineer import build_feature_frame
 from genesis_ai.training.data_module import TimeSeriesDataModule

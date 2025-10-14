@@ -97,7 +97,6 @@ def evaluate_series(df: pd.DataFrame, model_type: str = "gru", seq_len: int = 12
                     trues_per_h[m].append(float(y_test[tgt_idx]))
 
     # Compute metrics
-    import math
     for m in HORIZONS_MIN:
         y_true = np.array(trues_per_h[m])
         y_pred = np.array(preds_per_h[m])

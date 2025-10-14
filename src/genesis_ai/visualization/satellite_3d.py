@@ -6,10 +6,9 @@ Interactive 3D visualization of satellite positions and error predictions
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, List, Tuple, Optional
 import math
 
 class Satellite3DViewer:

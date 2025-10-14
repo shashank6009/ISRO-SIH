@@ -6,16 +6,12 @@ Core enhanced features without heavy dependencies
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 from datetime import datetime, timedelta
-from pathlib import Path
 import time
 import numpy as np
-import json
 
 # Import original modules that work
 from genesis_ai.inference.predictor_client import GenesisClient
-from genesis_ai.integration.env_feed import EnvironmentalMonitor
 
 # Generate demo satellite data (moved to top to avoid NameError)
 def generate_demo_satellite_data():

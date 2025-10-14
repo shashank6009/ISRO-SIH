@@ -4,16 +4,17 @@
   "description": "GENESIS-AI GNSS Error Forecasting Platform",
   "main": "index.js",
   "scripts": {
-    "dev": "python3 -m streamlit run src/genesis_ai/app/main.py --server.port=8501",
-    "competition": "python3 -m streamlit run src/genesis_ai/app/competition_dashboard.py --server.port=8502",
-    "start": "python3 -m streamlit run src/genesis_ai/app/main.py --server.port=8501 --server.headless=true",
+    "dev": "python3 -m streamlit run src/genesis_ai/app/competition_dashboard.py --server.port=8502",
+    "start": "python3 -m streamlit run src/genesis_ai/app/competition_dashboard.py --server.port=8502 --server.headless=true",
+    "build": "python3 -m pip install -e . && python3 -c 'import src.genesis_ai.app.competition_dashboard'",
+    "vercel-build": "python3 -m pip install -r requirements.txt && python3 -m pip install -e .",
     "api": "python3 -m uvicorn genesis_ai.inference.service:app --host 0.0.0.0 --port 8000",
     "serve": "concurrently \"npm run api\" \"npm run start\"",
-    "serve-competition": "concurrently \"npm run api\" \"npm run competition\"",
-    "install-deps": "python3 -m pip install -e .",
-    "test": "python3 -m pytest -v",
-    "lint": "python3 -m ruff check src tests",
-    "format": "python3 -m black src tests && python3 -m isort src tests"
+    "test": "python3 -m pytest tests/ -v --tb=short",
+    "lint": "python3 -m ruff check src tests --fix",
+    "format": "python3 -m black src tests && python3 -m isort src tests",
+    "type-check": "python3 -m mypy src --ignore-missing-imports",
+    "security-check": "python3 -m bandit -r src -f json -o security-report.json || true"
   },
   "keywords": [
     "gnss",

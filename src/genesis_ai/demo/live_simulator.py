@@ -5,12 +5,10 @@ Generates realistic satellite data streams for impressive live demonstrations
 
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
 import time
 import threading
-import json
-from typing import Dict, List, Any
-from pathlib import Path
+from typing import Dict, Any
 import logging
 
 logger = logging.getLogger(__name__)

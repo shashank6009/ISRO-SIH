@@ -8,13 +8,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 from scipy import stats
-from typing import Tuple, Dict, Optional
-import warnings
+from typing import Tuple, Dict
 
 class NormalityLoss(nn.Module):
     """Loss function that penalizes deviations from normal distribution"""
     
-    def __init__(self, normality_weight: float = 0.1, method: str = 'ks'):
+    def __init__(self, normality_weight: float = 0.7, method: str = 'ks'):
         super().__init__()
         self.normality_weight = normality_weight
         self.method = method

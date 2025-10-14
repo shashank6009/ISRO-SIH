@@ -6,7 +6,7 @@ Implements orbital mechanics constraints and satellite dynamics for enhanced acc
 import numpy as np
 import torch
 import torch.nn as nn
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple
 from dataclasses import dataclass
 
 @dataclass

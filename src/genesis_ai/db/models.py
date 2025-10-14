@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, Float, String, DateTime, Boolean, create_engine, text
+from sqlalchemy import Column, Integer, Float, String, DateTime, Boolean, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
-import os
 from pathlib import Path
 
 Base = declarative_base()
@@ -100,7 +99,7 @@ if __name__ == "__main__":
     # Initialize database when run directly
     print("Initializing GENESIS-AI database...")
     engine = init_database()
-    print(f"Database initialized successfully!")
+    print("Database initialized successfully!")
     
     # Show stats
     stats = get_db_stats(engine)

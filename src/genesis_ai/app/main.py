@@ -1,17 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 import plotly.io as pio
 from datetime import datetime
 from pathlib import Path
 import time
 import io
-import json
-import requests
 
 from genesis_ai.inference.predictor_client import GenesisClient
-from genesis_ai.integration.env_feed import fetch_space_weather, fetch_ionosphere_data, get_ground_stations, fetch_solar_activity, EnvironmentalMonitor
+from genesis_ai.integration.env_feed import get_ground_stations, EnvironmentalMonitor
 
 # --- UI Theme ---
 st.set_page_config(
@@ -988,7 +985,7 @@ with tab1:
     st.markdown("### 📊 Database Statistics")
     
     try:
-        from genesis_ai.db.models import ForecastRecord, TrainingRun, AlertRecord, get_engine, get_session, get_db_stats, init_database
+        from genesis_ai.db.models import ForecastRecord, TrainingRun, get_engine, get_session, get_db_stats, init_database
         
         # Initialize database if needed
         engine = init_database()
@@ -1053,7 +1050,7 @@ with tab2:
     st.markdown("### 🚨 Alert System")
     
     try:
-        from genesis_ai.monitor.alerts import AlertManager, MonitoringService
+        from genesis_ai.monitor.alerts import AlertManager
         
         alert_manager = AlertManager()
         

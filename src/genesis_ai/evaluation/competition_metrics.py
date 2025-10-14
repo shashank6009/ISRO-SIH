@@ -5,14 +5,11 @@ Implements all required metrics, normality tests, and validation procedures
 
 import numpy as np
 import pandas as pd
-import torch
 from typing import Dict, List, Tuple, Optional, Any
 from dataclasses import dataclass
 from scipy import stats
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-import warnings
 
 @dataclass
 class CompetitionMetrics:
@@ -90,22 +87,22 @@ class NormalityTester:
         # Normality tests
         try:
             results['ks_stat'], results['ks_pvalue'] = NormalityTester.kolmogorov_smirnov_test(residuals)
-        except Exception as e:
+        except Exception:
             results['ks_stat'], results['ks_pvalue'] = np.nan, np.nan
         
         try:
             results['sw_stat'], results['sw_pvalue'] = NormalityTester.shapiro_wilk_test(residuals)
-        except Exception as e:
+        except Exception:
             results['sw_stat'], results['sw_pvalue'] = np.nan, np.nan
         
         try:
             results['ad_stat'] = NormalityTester.anderson_darling_test(residuals)
-        except Exception as e:
+        except Exception:
             results['ad_stat'] = np.nan
         
         try:
             results['jb_stat'], results['jb_pvalue'] = NormalityTester.jarque_bera_test(residuals)
-        except Exception as e:
+        except Exception:
             results['jb_stat'], results['jb_pvalue'] = np.nan, np.nan
         
         # Composite normality score (lower is better)
@@ -124,16 +121,23 @@ class NormalityTester:
         return results
 
 class CompetitionEvaluator:
-    """Main evaluation class for competition metrics"""
+    """Main evaluation class for competition metrics with normality as primary criterion"""
     
     def __init__(self, horizons: List[str] = ['15min', '30min', '1hour', '2hour', '24hour']):
         self.horizons = horizons
+        # Updated weights to prioritize normality (70%) over accuracy (30%)
+        self.evaluation_weights = {
+            'normality_score': 0.70,    # PRIMARY: Normal distribution closeness
+            'accuracy_score': 0.30      # SECONDARY: Prediction accuracy
+        }
+        
+        # Horizon weights (emphasize shorter horizons as per competition)
         self.horizon_weights = {
-            '15min': 0.25,
+            '15min': 0.30,
             '30min': 0.25,
-            '1hour': 0.2,
+            '1hour': 0.20,
             '2hour': 0.15,
-            '24hour': 0.15
+            '24hour': 0.10
         }
     
     def evaluate_predictions(self, predictions: Dict[str, np.ndarray], 
