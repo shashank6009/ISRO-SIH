@@ -60,7 +60,7 @@ def get_engine(db_url=None):
     """Create database engine with fallback to SQLite."""
     if db_url is None:
         # Default to SQLite in project directory
-        db_path = Path(__file__).parent.parent.parent.parent / "genesis_ai.db"
+        db_path = Path(__file__).parent.parent.parent.parent / "naviq.db"
         db_url = f"sqlite:///{db_path}"
     
     # Handle PostgreSQL vs SQLite
@@ -97,7 +97,7 @@ def get_db_stats(engine):
 
 if __name__ == "__main__":
     # Initialize database when run directly
-    print("Initializing GENESIS-AI database...")
+    print("Initializing NAVIQ database...")
     engine = init_database()
     print("Database initialized successfully!")
     

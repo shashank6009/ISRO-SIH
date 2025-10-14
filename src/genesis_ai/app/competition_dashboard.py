@@ -1,5 +1,5 @@
 """
-GENESIS-AI: Professional GNSS Error Prediction Dashboard
+NAVIQ: Professional GNSS Error Prediction Dashboard
 Competition-grade interface for satellite error analysis and normality assessment
 """
 
@@ -2943,7 +2943,7 @@ if uploaded_file or 'loaded_data' in st.session_state:
                 st.download_button(
                     "Download Results (JSON)",
                     data=results_json,
-                    file_name="genesis_ai_results.json",
+                    file_name="naviq_results.json",
                     mime="application/json"
                 )
             
@@ -2965,7 +2965,7 @@ if uploaded_file or 'loaded_data' in st.session_state:
                 st.download_button(
                     "Download Results (CSV)",
                     data=csv_data,
-                    file_name="genesis_ai_results.csv",
+                    file_name="naviq_results.csv",
                     mime="text/csv"
                 )
     
@@ -2987,7 +2987,7 @@ else:
 # Professional footer
 st.markdown("""
 <div style="text-align: center; color: #64748b; padding: 2rem; margin-top: 3rem; border-top: 1px solid #334155;">
-    <div style="font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 0.5rem;">GENESIS-AI</div>
+    <div style="font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 0.5rem;">NAVIQ</div>
     <div style="font-size: 0.9rem;">Professional GNSS Error Prediction & Normality Assessment</div>
 </div>
 """, unsafe_allow_html=True)

@@ -44,11 +44,11 @@ class PredictResponse(BaseModel):
     info: dict
 
 # ---------- App ----------
-app = FastAPI(title="GENESIS-AI Inference Service", version="0.1.0")
+app = FastAPI(title="NAVIQ Inference Service", version="0.1.0")
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "genesis-ai", "version": "0.1.0"}
+    return {"status": "ok", "service": "naviq", "version": "0.1.0"}
 
 # Helper: simple model factory (weights loading can be added later)
 def make_model(model_type: str, input_size: int, hidden_size: int):
