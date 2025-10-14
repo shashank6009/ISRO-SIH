@@ -45,13 +45,9 @@ async def predict_placeholder():
         "status": "service_available"
     }
 
-# Import the actual FastAPI service if available
-try:
-    from src.genesis_ai.inference.service import app as inference_app
-    # Mount the inference service
-    app.mount("/api", inference_app)
-except ImportError:
-    pass
+# Note: Full ML inference service requires heavy dependencies
+# This is a lightweight API service for Vercel deployment
+# Full functionality is available in the Railway deployment
 
 if __name__ == "__main__":
     import uvicorn
