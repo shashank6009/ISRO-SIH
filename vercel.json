@@ -49,13 +49,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "src/genesis_ai/app/competition_dashboard.py": {
-      "maxDuration": 30
-    },
-    "src/genesis_ai/inference/service.py": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
