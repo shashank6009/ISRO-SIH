@@ -7,10 +7,7 @@ import pandas as pd
 import numpy as np
 import torch
 
-try:
-    from genesis_ai.features.engineer_simple import build_feature_frame_safe as build_feature_frame
-except ImportError:
-    from genesis_ai.features.engineer import build_feature_frame
+from genesis_ai.features.engineer import build_feature_frame
 from genesis_ai.models.forecast_models import GRUForecaster
 from genesis_ai.models.advanced_models import TransformerForecaster
 from genesis_ai.models.hybrid_model import HybridWithGP
